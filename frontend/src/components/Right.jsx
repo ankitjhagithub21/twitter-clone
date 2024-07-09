@@ -5,7 +5,7 @@ import SearchBar from './SearchBar'
 
 const Right = () => {
   return (
-    <div className='lg:w-[30%] w-full md:block hidden p-3 overflow-auto lg:flex flex-col gap-5'>
+    <div className='lg:w-[30%]  w-full md:block hidden px-3  overflow-auto lg:flex flex-col gap-5'>
       <SearchBar/>
       <Premium/>
       <WhoToFollow/>

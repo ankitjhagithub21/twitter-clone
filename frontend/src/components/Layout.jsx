@@ -4,10 +4,10 @@ import Right from './Right'
 import { Outlet } from 'react-router-dom'
 const Layout = () => {
     return (
-        <div className='lg:w-[90%] w-full mx-auto flex h-[100vh]'>
+        <div className='lg:w-[90%] w-full mx-auto flex h-[100vh] relative'>
 
             <Left />
-            <div className='lg:w-[50%] w-full border-r border-l'>
+            <div className='lg:w-[50%] w-full border-r border-l '>
             <Outlet />
             </div>
             <Right />
