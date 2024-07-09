@@ -20,7 +20,7 @@ const WhoToFollow = () => {
         fetchUsers()
     }, [])
     return (
-        <div className='border rounded-xl p-3'>
+        <div className='border border-gray-700 rounded-xl p-3'>
             <h2 className='text-2xl font-bold'>Who to follow</h2>
             <div>
                 {

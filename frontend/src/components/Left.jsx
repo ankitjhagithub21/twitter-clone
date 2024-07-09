@@ -52,7 +52,7 @@ const Left = () => {
 ]
 
   return (
-    <div className='lg:w-[20%] w-fit flex flex-col gap-2 lg:items-start items-center justify-between px-1 py-5'>
+    <div className='lg:w-[20%] w-fit flex flex-col gap-2 lg:items-start items-center  border-r border-gray-700 justify-between px-1 py-5'>
        <div>
         <img src="/logo.avif" alt="logo" className='rounded-full w-10 ml-1' />
        </div>
