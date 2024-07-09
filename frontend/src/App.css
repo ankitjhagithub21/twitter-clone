@@ -12,3 +12,20 @@ body{
 ::-webkit-scrollbar{
     display: none;
 }
+
+.loader{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 3px solid #1D9BF0 ;
+ border-bottom: 3px solid white;
+ animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0%{
+    transform:rotate(0deg) ;
+  }100%{
+    transform: rotate(360deg);
+  }
+}

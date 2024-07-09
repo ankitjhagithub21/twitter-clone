@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import User from './User'
+import Loader from './Loader'
 
 const WhoToFollow = () => {
     const [users, setUsers] = useState([])
@@ -21,9 +22,9 @@ const WhoToFollow = () => {
     return (
         <div className='border rounded-xl p-3'>
             <h2 className='text-2xl font-bold'>Who to follow</h2>
-            <div >
+            <div>
                 {
-                    users.map((user) => {
+                    users.length === 0 ? <Loader/> : users.map((user) => {
                         return <User key={user.id} name={user.name} username={user.username} profileImg={profileImg} />
                     })
                 }
