@@ -7,7 +7,7 @@ const Layout = () => {
         <div className='lg:w-[90%] w-full mx-auto flex h-[100vh] relative'>
 
             <Left />
-            <div className='lg:w-[50%] w-full border-r border-l '>
+            <div className='lg:w-[50%] w-full border-r lg:border-l '>
             <Outlet />
             </div>
             <Right />
