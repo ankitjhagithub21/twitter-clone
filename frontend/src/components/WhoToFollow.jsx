@@ -23,7 +23,9 @@ const WhoToFollow = () => {
             <h2 className='text-2xl font-bold'>Who to follow</h2>
             <div>
                 {
-                    users.length === 0 ? <Loader/> : users.map((user) => {
+                    users.length === 0 ? <div className='my-5'>
+                        <Loader/>
+                    </div> : users.map((user) => {
                         return <User key={user.id} name={user.name} username={user.username} profileImg={profileImg} />
                     })
                 }

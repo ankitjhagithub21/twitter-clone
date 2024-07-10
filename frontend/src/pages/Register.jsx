@@ -68,7 +68,7 @@ const Register = () => {
                  <h2 className='text-3xl font-bold mb-5'>Join Today.</h2>
                 </>
                }
-                <form className='flex flex-col gap-2 text-gray-800 text-sm lg:w-2/3 w-full' onSubmit={handleSubmit}>
+                <form className='flex flex-col gap-2 text-gray-800 text-sm lg:w-1/2 w-full' onSubmit={handleSubmit}>
                  {
                     !isLogin && <>
                     
@@ -91,7 +91,7 @@ const Register = () => {
                     }
                 </p>
              {
-                isLogin ?  <button type='button' className='border text-[#1D9BF0] px-4 py-2 rounded-full hover:bg-[#031018] lg:w-2/3 w-full' onClick={()=>setIsLogin(false)}>Sign Up </button> :  <button type='button' className='border text-[#1D9BF0] px-4 py-2 rounded-full hover:bg-[#031018] lg:w-2/3 w-full' onClick={()=>setIsLogin(true)}>Sign in </button>
+                isLogin ?  <button type='button' className='border text-[#1D9BF0] px-4 py-2 rounded-full hover:bg-[#031018] lg:w-1/2  w-full' onClick={()=>setIsLogin(false)}>Sign Up </button> :  <button type='button' className='border text-[#1D9BF0] px-4 py-2 rounded-full hover:bg-[#031018] lg:w-1/2 w-full' onClick={()=>setIsLogin(true)}>Sign in </button>
              }
             </div>
         </div>
