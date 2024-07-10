@@ -21,8 +21,7 @@ const userSchema = mongoose.Schema({
     password:{
         type:String,
         required:true,
-        unique:true,
-        minLength:5
+       
     },
     profileImg:{
         type:String,
@@ -56,7 +55,7 @@ const userSchema = mongoose.Schema({
             ref:"Tweet"
         }
     ]
-})
+},{ versionKey: false })
 
 const User = mongoose.model('User',userSchema)
 
