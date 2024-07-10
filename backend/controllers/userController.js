@@ -23,6 +23,31 @@ const getUserProfile = async(req,res) =>{
     }
 }
 
+const getWhoToFollow = async(req,res) =>{
+    try{
+        const user = await User.findById(req.id)
+        if(!user){
+            return res.status(401).json({
+                success:false,
+                message:"You are not authorized."
+            })
+        }
+        const users = await User.find({ _id: { $nin: user.following } });
+        res.json({
+            success:true,
+            users
+        })
+
+    }catch(error){
+        res.json({
+            success:false,
+            message:"Internal server error."
+        })
+    }
+
+}
+
 module.exports = {
-    getUserProfile
+    getUserProfile,
+    getWhoToFollow
 }

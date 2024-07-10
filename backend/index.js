@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const connectDb = require('./db/connection')
 const authRouter = require('./routes/authRoutes')
 const userRouter = require('./routes/userRoutes')
+const tweetRouter = require('./routes/tweetRoutes')
 const app = express()
 const port = 3000
 connectDb()
@@ -22,6 +23,7 @@ app.use(cookieParser())
 //routes
 app.use("/api/auth",authRouter)
 app.use("/api/user",userRouter)
+app.use("/api/tweet",tweetRouter)
 
 
 app.get("/",(req,res)=>{

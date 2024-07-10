@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
-const verifyToken  = async(req,res,next) =>{
+
+const verifyToken  = (req,res,next) =>{
     try{
         const token = req.cookies.jwt;
      
@@ -13,14 +13,8 @@ const verifyToken  = async(req,res,next) =>{
 
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
        
-        const user = await User.findById(decoded.userId).select("-password")
-        if(!user){
-            return res.json({
-                success:false,
-                message:"Token expired."
-            })
-        }
-        req.user = user;
+      
+        req.id = decoded.userId;
 
         next();
 
