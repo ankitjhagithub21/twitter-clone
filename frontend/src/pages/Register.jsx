@@ -57,7 +57,7 @@ const Register = () => {
     
   return (
     <section>
-        <div className='container p-5 lg:p-0 mx-auto flex flex-wrap min-h-screen w-full md:items-center'>
+        <div className='container px-5 py-12 lg:p-0 mx-auto flex flex-wrap min-h-screen w-full md:items-center'>
             <div className='lg:w-1/2  w-full flex items-center md:justify-center justify-start'>
                 <img src="./twitter.png" alt="logo"  />
             </div>

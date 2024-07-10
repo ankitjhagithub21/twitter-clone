@@ -6,7 +6,7 @@ const CreateTweet = () => {
     const [content,setContent] = useState('')
 
   return (
-    <div className='flex w-full items-start gap-2 p-2'>
+    <div className='flex w-full items-start gap-2 p-2 border-b border-b-gray-700'>
       <img src="https://ankitjha.vercel.app/profile.png" alt="" className='w-10 rounded-full' />
       <div className='flex flex-col w-full'>
         <textarea  placeholder='What is happening?!' value={content} className='h-20 py-2 w-full bg-transparent resize-none' onChange={(e)=>setContent(e.target.value)}></textarea>

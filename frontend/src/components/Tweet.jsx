@@ -20,7 +20,7 @@ const Tweet = ({ tweet }) => {
                 <div className='my-2'>
                     <img src={image} alt="thumbnail" className='rounded-lg' />
                 </div>
-                <div className='flex items-center justify-between'>
+                <div className='flex items-center justify-between text-lg'>
                     <div>
                         <FaRegComment/>
                     </div>

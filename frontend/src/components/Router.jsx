@@ -17,7 +17,7 @@ const Router = () => {
                     element:<Home/>
                 },
                 {
-                    path:"/profile",
+                    path:"/:username",
                     element:<Profile/>
                 }
             ]
