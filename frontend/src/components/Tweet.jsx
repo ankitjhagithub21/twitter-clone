@@ -10,7 +10,7 @@ const Tweet = ({ tweet }) => {
                 <img src={profileImg} alt="user" className='w-full h-full rounded-full' />
             </div>
             <div className='flex flex-col'>
-                <div className='flex items-center gap-1'>
+                <div className='flex items-center gap-1 flex-wrap'>
                     <span className='text-sm font-bold'>{name}</span>
                     <span className='text-sm text-gray-500'>{username}</span>
                     <LuDot className='text-gray-500'/>
