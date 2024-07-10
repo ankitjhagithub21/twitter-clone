@@ -1,6 +1,7 @@
 import React from 'react'
 import CenterNav from '../components/CenterNav'
 import Tweet from '../components/Tweet'
+import CreateTweet from '../components/CreateTweet'
 
 
 const Home = () => {
@@ -13,11 +14,13 @@ const Home = () => {
 
   }
   return (
-    <div>
+    <>
+
       <CenterNav/>
+      <CreateTweet/>
       <Tweet tweet={tweet}/>
       <Tweet tweet={tweet}/>
-    </div>
+    </>
   )
 }
 
