@@ -132,7 +132,7 @@ const logout = async (req, res) => {
 
 const getUser = async (req, res) => {
     try {
-        const user = await User.findById(req._id).select("-password")
+        const user = await User.findById(req.id).select("-password")
 
         if(!user){
             return res.json({
