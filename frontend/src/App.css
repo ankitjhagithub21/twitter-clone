@@ -17,9 +17,9 @@ body{
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 3px solid #1D9BF0 ;
- border-bottom: 3px solid white;
- animation: spin 1s infinite linear;
+  border: 3px solid white;
+ border-bottom: 3px solid #1D9BF0;
+ animation: spin 0.7s infinite linear;
 }
 
 @keyframes spin {

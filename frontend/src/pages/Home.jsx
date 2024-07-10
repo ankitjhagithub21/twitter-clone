@@ -2,9 +2,11 @@ import React from 'react'
 import CenterNav from '../components/CenterNav'
 import Tweet from '../components/Tweet'
 import CreateTweet from '../components/CreateTweet'
+import useGetUser from '../hooks/useGetUser'
 
 
 const Home = () => {
+  
   const tweet = {
     profileImg:"https://ankitjha.vercel.app/profile.png",
       name:"Gautam Gambhi",

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <div className='loader mx-auto my-5'>
+    <div className='loader mx-auto'>
       
     </div>
   )

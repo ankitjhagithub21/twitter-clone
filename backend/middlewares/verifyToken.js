@@ -1,8 +1,9 @@
-const jwt = require('jsonwebtoken')
-const verifyToken  = (req,res,next) =>{
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
+const verifyToken  = async(req,res,next) =>{
     try{
         const token = req.cookies.jwt;
-
+     
         if(!token){
             return res.json({
                 success:false,
@@ -11,20 +12,22 @@ const verifyToken  = (req,res,next) =>{
         }
 
         const decoded = jwt.verify(token,process.env.JWT_SECRET)
-        if(!decoded){
+       
+        const user = await User.findById(decoded.userId).select("-password")
+        if(!user){
             return res.json({
                 success:false,
-                message:"token expired."
+                message:"Token expired."
             })
         }
-        req.id = decoded.userId;
+        req.user = user;
 
         next();
 
     }catch(error){
         res.status(500).json({
             success:false,
-            message:"Internal Server Error"
+            message:error.message
         })
     }
 }
