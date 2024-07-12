@@ -8,7 +8,7 @@ const useGetUser = () => {
     useEffect(()=>{
         const getUserFromServer = async() =>{
             try{
-                const res = await fetch("/api/auth/user",{
+                const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/user`,{
                     credentials:'include'
                 })
                 const data = await res.json()

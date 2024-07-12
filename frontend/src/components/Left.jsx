@@ -50,7 +50,9 @@ const Left = () => {
   ]
   const handleLogout = async() =>{
      try{
-      const res = await fetch(`/api/auth/logout`)
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/logout`,{
+        credentials:'include'
+      })
       const data = await res.json()
       if(data.success){
         

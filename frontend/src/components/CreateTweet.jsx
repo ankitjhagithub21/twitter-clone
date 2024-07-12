@@ -22,7 +22,7 @@ const CreateTweet = () => {
 
     try {
       setLoading(true)
-      const res = await fetch("/api/tweet/create", {
+      const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/tweet/create`, {
         method: "POST",
         credentials: 'include',
         body: formData

@@ -30,7 +30,7 @@ const Register = () => {
         if(loading) return;
         try{
             setLoading(true)
-            const res = await fetch(`/api/auth/${isLogin ? 'login':'register'}`,{
+            const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/auth/${isLogin ? 'login':'register'}`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
@@ -59,7 +59,7 @@ const Register = () => {
     <section>
         <div className='container px-5 py-12 lg:p-0 mx-auto flex flex-wrap min-h-screen w-full md:items-center'>
             <div className='lg:w-1/2  w-full flex items-center md:justify-center justify-start'>
-                <img src="./twitter.png" alt="logo"  />
+                <img src="./twitter.png" alt="logo" className='w-56 lg:w-1/2' />
             </div>
             <div className='lg:w-1/2 w-full flex flex-col'>
                {
@@ -68,7 +68,7 @@ const Register = () => {
                  <h2 className='text-3xl font-bold mb-5'>Join Today.</h2>
                 </>
                }
-                <form className='flex flex-col gap-2 text-gray-800 text-sm lg:w-1/2 w-full' onSubmit={handleSubmit}>
+                <form className='flex flex-col gap-3 text-gray-800 text-sm lg:w-1/2 w-full' onSubmit={handleSubmit}>
                  {
                     !isLogin && <>
                     

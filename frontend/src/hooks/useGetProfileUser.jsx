@@ -9,7 +9,7 @@ const useGetProfileUser = ({username}) => {
     useEffect(()=>{
         const getUserFromServer = async() =>{
             try{
-                const res = await fetch(`/api/user/${username}`)
+                const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/${username}`)
                 const data = await res.json()
                 console.log(data)
                 if(data.success){

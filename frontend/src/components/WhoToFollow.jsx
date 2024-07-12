@@ -7,12 +7,17 @@ const WhoToFollow = () => {
     const profileImg = "https://cdn-icons-png.flaticon.com/512/149/149071.png"
     const fetchUsers = async () => {
         try {
-            const res = await fetch(`https://jsonplaceholder.typicode.com/users`)
-            const data = await res.json()
-            setUsers(data)
-
+           const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/whotofollow`,{
+            credentials:'include'
+           })
+           const data = await res.json()
+           if(data.success){
+            setUsers(data.users)
+           }
         } catch (error) {
             console.log(error)
+        }finally{
+            setLoading(false)
         }
     }
     useEffect(() => {

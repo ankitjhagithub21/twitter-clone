@@ -4,6 +4,6 @@ const verifyToken = require('../middlewares/verifyToken')
 const userRouter = express.Router()
 
 userRouter.get("/:username",getUserProfile)
-userRouter.get("/whotofollow",verifyToken,getWhoToFollow)
+userRouter.get("/follow",getWhoToFollow)
 
 module.exports = userRouter
