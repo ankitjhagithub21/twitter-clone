@@ -30,12 +30,14 @@ const register = async (req, res) => {
         }
         const salt = await bcryptjs.genSalt(10);
         const hashedPassword = await bcryptjs.hash(password, salt)
-
+ 
+        const profileImg = `https://avatar.iran.liara.run/username?username=${fullName}`
         const newUser = new User({
             fullName,
             username,
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            profileImg,
 
         })
 

@@ -25,7 +25,6 @@ const userSchema = mongoose.Schema({
     },
     profileImg:{
         type:String,
-        default:"",
     },
     following:[
         {

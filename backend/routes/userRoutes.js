@@ -1,9 +1,10 @@
 const express = require('express')
-const { getUserProfile, getWhoToFollow } = require('../controllers/userController')
+const { getUserProfile, suggestedUsers, followUnfollowUser } = require('../controllers/userController')
 const verifyToken = require('../middlewares/verifyToken')
 const userRouter = express.Router()
 
-userRouter.get("/:username",getUserProfile)
-userRouter.get("/follow",getWhoToFollow)
+userRouter.get("/profile/:username",getUserProfile)
+userRouter.get("/suggested",verifyToken,suggestedUsers)
+userRouter.post('/follow', verifyToken, followUnfollowUser);
 
 module.exports = userRouter

@@ -1,20 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast from "react-hot-toast"
 
-const User = (props) => {
-    const {name,username,profileImg} = props
-  return (
-    <div className='flex justify-between items-center my-3'>
-        <div className='flex items-center gap-2'>
-            <img src={profileImg} alt="user" className='w-10 rounded-full' />
-            <div className='flex flex-col items-start text-sm'>
-                <span className='font-bold'>{name}</span>
-                <span className='text-gray-600'>@{username}</span>
+const User = ({user}) => {
+    const { _id, fullName, username, profileImg } = user;  
+    const navigate = useNavigate();
+    const [isFollowing, setIsFollowing] = useState(false);  
+
+    const handleFollowUnfollow = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/follow`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials:'include',
+                body: JSON.stringify({ userIdToFollowUnfollow: _id })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                setIsFollowing(!isFollowing);  
+                toast.success(data.message)
+            } else {
+                console.error(data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    return (
+        <div className='flex justify-between items-center my-3'>
+            <div className='flex items-center gap-2'>
+                <img 
+                    src={profileImg ? profileImg :'https://cdn-icons-png.flaticon.com/512/149/149071.png'} 
+                    alt="user" 
+                    className='w-10 rounded-full cursor-pointer' 
+                    onClick={() => navigate(`/${username}`)}
+                />
+                <div className='flex flex-col items-start text-sm'>
+                    <span className='font-bold'>{fullName}</span>
+                    <span className='text-gray-400'>@{username}</span>
+                </div>
             </div>
+            <button 
+                className={`px-4 py-1 rounded-full text-sm font-semibold ${isFollowing ? 'border hover:bg-white hover:text-black  text-white ' : 'bg-white text-gray-800 hover:bg-gray-200'}`} 
+                onClick={handleFollowUnfollow}
+            >
+                {isFollowing ? 'Unfollow' : 'Follow'}
+            </button>
         </div>
-        <button className='px-4 bg-white text-gray-800 py-1 rounded-full text-sm font-semibold hover:bg-gray-200'>Follow</button>
-      
-    </div>
-  )
-}
+    );
+};
 
-export default User
+export default User;
