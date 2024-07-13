@@ -104,9 +104,7 @@ const deleteTweet = async (req, res) => {
 
 const getAllTweets = async (req, res) => {
     try {
-        const tweets = await Tweet.find()
-            .populate('author', 'username fullName profileImg')
-            .sort({ createdAt: -1 }); 
+        let tweets = await Tweet.find().populate('author', 'username fullName profileImg')
 
         if (!tweets) {
             return res.status(404).json({
@@ -117,7 +115,7 @@ const getAllTweets = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            tweets,
+            tweets:tweets.reverse(),
         });
     } catch (error) {
        

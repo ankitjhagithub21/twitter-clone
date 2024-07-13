@@ -12,6 +12,7 @@ const useGetAllTweets = () => {
                 const data = await res.json();
 
                 if (data.success) {
+                   
                     dispatch(setTweets(data.tweets))
                 } else {
                     console.error(data.message);

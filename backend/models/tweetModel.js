@@ -1,42 +1,41 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const tweetSchema = mongoose.Schema({
-    content:{
-        type:String
+    content: {
+        type: String
     },
-    image:{
-        type:Object,
+    image: {
+        type: Object
     },
-    author:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required:true
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
     },
-    likes:[
+    likes: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         }
     ],
-    comments:[
+    comments: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         }
     ],
-    bookmarks:[
+    bookmarks: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"User"
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         }
     ],
-    createdAt:{
-        type:Date,
-        default:Date.now()
-    },
-   
-},{ versionKey: false })
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
+}, { versionKey: false });
 
-const Tweet = mongoose.model('Tweet',tweetSchema)
+const Tweet = mongoose.model('Tweet', tweetSchema);
 
-module.exports = Tweet
+module.exports = Tweet;
