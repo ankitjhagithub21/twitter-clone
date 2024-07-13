@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 
 const tweetSchema = mongoose.Schema({
     content:{
-        type:String,
-        required:true
+        type:String
     },
     image:{
         type:Object,

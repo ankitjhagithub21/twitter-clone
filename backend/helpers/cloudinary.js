@@ -21,7 +21,7 @@ const uploadImage = async (imagePath) => {
       const result = await cloudinary.uploader.upload(imagePath, options);
       
       return {
-        image:result.url,
+        url:result.url,
         publicId:result.public_id
       }
       
@@ -30,6 +30,15 @@ const uploadImage = async (imagePath) => {
     }
 };
 
+const deleteImage = async (publicId) => {
+  try {
+    await cloudinary.uploader.destroy(publicId)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
-  uploadImage
+  uploadImage,
+  deleteImage
 }

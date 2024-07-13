@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { CiImageOn, CiFaceSmile, CiLocationOn } from "react-icons/ci";
 import toast from "react-hot-toast"
+import { useDispatch } from 'react-redux';
+import { addTweet } from '../redux/slices/tweetSlice';
 
 const CreateTweet = () => {
   const [content, setContent] = useState('')
   const [image, setImage] = useState(null)
   const [loading, setLoading] = useState(false)
+  const dispatch = useDispatch()
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0])
@@ -31,6 +34,7 @@ const CreateTweet = () => {
       if (data.success) {
         setContent('')
         setImage(null)
+        dispatch(addTweet(data.tweet))
         toast.success(data.message)
       } else {
         toast.error(data.message)

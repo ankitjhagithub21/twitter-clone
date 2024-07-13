@@ -11,7 +11,9 @@ const Profile = () => {
    
 
     if (loading) {
-        return <Loader />;
+        return <div className='p-5'>
+            <Loader />
+        </div>;
     }
 
     if (!user) {
