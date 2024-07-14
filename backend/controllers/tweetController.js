@@ -126,9 +126,49 @@ const getAllTweets = async (req, res) => {
     }
 };
 
+const likeUnlikeTweet = async (req, res) => {
+    try {
+        const tweetId = req.params.id;
+        const userId = req.id; 
+
+        const tweet = await Tweet.findById(tweetId);
+        if (!tweet) {
+            return res.status(404).json({
+                success: false,
+                message: "Tweet not found.",
+            });
+        }
+
+       
+        const userIndex = tweet.likes.indexOf(userId);
+        if (userIndex > -1) {
+            tweet.likes.splice(userIndex, 1);
+        } else {
+           
+            tweet.likes.push(userId);
+        }
+
+        await tweet.save();
+
+        res.status(200).json({
+            success: true,
+            message: userIndex > -1 ? "Tweet unliked." : "Tweet liked.",
+            
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error.",
+        });
+    }
+};
+
+
 
 module.exports = {
     createTweet,
     deleteTweet,
-    getAllTweets
+    getAllTweets,
+    likeUnlikeTweet
 }
