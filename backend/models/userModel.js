@@ -26,6 +26,9 @@ const userSchema = mongoose.Schema({
     profileImg:{
         type:String,
     },
+    bio:{
+        type:String,
+    },
     following:[
         {
             type:mongoose.Schema.Types.ObjectId,

@@ -1,11 +1,12 @@
 import { formatDistanceToNow } from 'date-fns';
 
-const formateDate = (date) => {
-    let result =  formatDistanceToNow(new Date(date), { addSuffix: true });
-    if(result.includes('about')){
-       result =  result.slice(5)       
+const formatDate = (date) => {
+    let result = formatDistanceToNow(new Date(date), { addSuffix: true });
+   
+    if (result.startsWith('about ')) {
+        result = result.slice(6); 
     }
     return result;
 }
 
-export default formateDate
+export default formatDate;

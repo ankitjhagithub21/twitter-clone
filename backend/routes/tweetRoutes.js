@@ -8,7 +8,7 @@ const upload = require('../helpers/upload')
 tweetRouter.post("/create",verifyToken,upload.single('image'),createTweet)
 tweetRouter.delete("/:id",verifyToken,deleteTweet)
 tweetRouter.get("/all",getAllTweets)
-tweetRouter.get("/like/:id",verifyToken,likeUnlikeTweet)
+tweetRouter.put("/like/:id",verifyToken,likeUnlikeTweet)
 
 
 module.exports = tweetRouter  
