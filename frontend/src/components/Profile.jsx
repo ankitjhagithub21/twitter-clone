@@ -39,27 +39,27 @@ const Profile = () => {
                 <div className='ml-2 flex flex-col gap-2'>
                     <h2 className='mt-2 font-bold text-xl'>{user.fullName}</h2>
                     <p className='text-gray-400'>@{user.username}</p>
-                  {
-                    user.bio &&  <p>{user.bio}</p>
-                  }
-                   
-                      
-                        <div className='flex items-center gap-1 text-gray-400 text-sm'>
-                            <SlCalender />
-                            <span>Joined</span>
-                            {formatDate(user.joined)}
+                    {
+                        user.bio && <p>{user.bio}</p>
+                    }
+
+
+                    <div className='flex items-center gap-1 text-gray-400 text-sm'>
+                        <SlCalender />
+                        <span>Joined</span>
+                        {formatDate(user.joined)}
+                    </div>
+                    <div className='text-gray-400 text-sm flex items-center gap-1'>
+                        <div className="flex items-center gap-1">
+                            <span>{user.following.length}</span>
+                            Following
                         </div>
-                        <div className='text-gray-400 text-sm flex items-center gap-1'>
-                            <div className="flex items-center gap-1">
-                                <span>{user.following.length}</span>
-                                Following
-                            </div>
-                            <div className='flex items-center gap-1'>
-                                <span>{user.followers.length}</span>
-                                Followers
-                            </div>
+                        <div className='flex items-center gap-1'>
+                            <span>{user.followers.length}</span>
+                            Followers
                         </div>
-                   
+                    </div>
+
                 </div>
 
             </div>

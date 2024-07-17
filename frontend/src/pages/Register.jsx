@@ -63,22 +63,22 @@ const Register = () => {
             </div>
             <div className='lg:w-1/2 w-full flex flex-col'>
                {
-                isLogin ? <h2 className='mb-5 font-bold text-3xl'>Sign in to X</h2> : <>
+                isLogin ? <h2 className='mb-5 font-bold text-4xl'>Sign in to X</h2> : <>
                  <h1 className='text-5xl font-bold mb-10'>Happening now</h1>
                  <h2 className='text-3xl font-bold mb-5'>Join Today.</h2>
                 </>
                }
-                <form className='flex flex-col gap-3 text-gray-800 text-sm lg:w-1/2 w-full' onSubmit={handleSubmit}>
+                <form className='flex flex-col gap-3   lg:w-1/2 w-full' onSubmit={handleSubmit}>
                  {
                     !isLogin && <>
                     
-                    <input type="text" name='fullName' className=' px-4 py-2  rounded-full bg-white' placeholder='Enter your name' onChange={handleChange}   required/>
-                    <input type="text" name='username' className='px-4 py-2 rounded-full bg-white' placeholder='Enter your username' onChange={handleChange}  required/>
+                    <input type="text" name='fullName' className=' px-4 py-2  rounded-full bg-transparent border' placeholder='Enter your name' onChange={handleChange}   required/>
+                    <input type="text" name='username' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your username' onChange={handleChange}  required/>
 
                     </>
                  }
-                    <input type="email" name='email' className='px-4 py-2 rounded-full bg-white' placeholder='Enter your email' onChange={handleChange}  required/>
-                    <input type="password" name='password' className='px-4 py-2 rounded-full bg-white' placeholder='Enter your password' onChange={handleChange}  required/>
+                    <input type="email" name='email' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your email' onChange={handleChange}  required/>
+                    <input type="password" name='password' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your password' onChange={handleChange}  required/>
                     <button className='bg-[#1D9BF0] text-white rounded-full px-4 py-2  font-semibold' type='submit'>
                        
                         {loading ? <Loader/> : `${isLogin ? 'Sign in' :'Create Account'}`}
