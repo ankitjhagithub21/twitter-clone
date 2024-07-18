@@ -70,13 +70,13 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        let user = await User.findOne({ email })
+        let user = await User.findOne({ username })
         if (!user) {
             return res.json({
                 success: false,
-                message: "Wrong email or password."
+                message: "Wrong username or password."
             })
         }
         const comparePassword = await bcryptjs.compare(password, user.password)
@@ -84,7 +84,7 @@ const login = async (req, res) => {
         if (!comparePassword) {
             return res.json({
                 success: false,
-                message: "Wrong email or password."
+                message: "Wrong username or password."
             })
         }
 

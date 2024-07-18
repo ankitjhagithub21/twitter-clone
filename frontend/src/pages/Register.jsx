@@ -73,11 +73,12 @@ const Register = () => {
                     !isLogin && <>
                     
                     <input type="text" name='fullName' className=' px-4 py-2  rounded-full bg-transparent border' placeholder='Enter your name' onChange={handleChange}   required/>
-                    <input type="text" name='username' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your username' onChange={handleChange}  required/>
-
+                   
+                    <input type="email" name='email' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your email' onChange={handleChange}  required/>
                     </>
                  }
-                    <input type="email" name='email' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your email' onChange={handleChange}  required/>
+                  <input type="text" name='username' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your username' onChange={handleChange}  required/>
+                   
                     <input type="password" name='password' className='px-4 py-2 rounded-full bg-transparent border' placeholder='Enter your password' onChange={handleChange}  required/>
                     <button className='bg-[#1D9BF0] text-white rounded-full px-4 py-2  font-semibold' type='submit'>
                        
