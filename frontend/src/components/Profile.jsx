@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from "react-router-dom";
 import useGetProfileUser from '../hooks/useGetProfileUser';
 import Loader from './Loader';
@@ -7,11 +7,13 @@ import UserNotFound from './UserNotFound';
 import { SlCalender } from "react-icons/sl";
 import formatDate from '../helpers/formateDate';
 import { useSelector } from 'react-redux';
+import EditProfile from './EditProfile';
 
 const Profile = () => {
     const { username } = useParams();
     const { user, loading } = useGetProfileUser(username);
     const {currUser} = useSelector(state=>state.user)
+    const [showEditProfile,setShowEditProfile] = useState(false)
 
     if (loading) {
         return <div className='p-5'>
@@ -24,6 +26,10 @@ const Profile = () => {
     }
 
     return (
+       <>
+       {
+        showEditProfile && <EditProfile setShowEditProfile={setShowEditProfile}/>
+       }
         <div className='h-full overflow-auto'>
             <div className='p-2'>
                 <Link to={"/"} className='flex gap-5 items-center '>
@@ -35,7 +41,7 @@ const Profile = () => {
             </div>
             <div className='bg-[#333639] h-48 relative'>
            {
-            currUser._id === user._id &&      <button className='absolute bottom-2 right-3 z-10 border rounded-full px-4 py-2 hover:bg-gray-800'>Edit Profile</button>
+            currUser._id === user._id &&      <button className='absolute bottom-2 right-3 z-10 border rounded-full px-4 py-2 hover:bg-gray-800' onClick={()=>setShowEditProfile(true)}>Edit Profile</button>
            }
             </div>
             <div className='-mt-16 ml-5 relative'>
@@ -73,6 +79,7 @@ const Profile = () => {
 
 
         </div>
+       </>
     );
 };
 

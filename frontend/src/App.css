@@ -22,6 +22,9 @@ body{
  animation: spin 0.7s infinite linear;
 }
 
+.edit-box{
+  background-color: rgba(87, 82, 82, 0.253);
+}
 
 @keyframes spin {
   0%{
