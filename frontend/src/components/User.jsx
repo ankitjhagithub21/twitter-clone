@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux';
 
 const User = ({user}) => {
     const { _id, fullName, username, profileImg } = user;  
-    const {currUser,profileUser} = useSelector(state=>state.user)
+    const {currUser} = useSelector(state=>state.user)
     const navigate = useNavigate();
-    const [isFollowing, setIsFollowing] = useState(false);  
-
+    const [isFollowing, setIsFollowing] = useState(currUser.following.includes(user._id));  
+      console.log(isFollowing)
     const handleFollowUnfollow = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/user/follow`, {

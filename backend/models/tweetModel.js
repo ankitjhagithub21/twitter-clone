@@ -30,11 +30,8 @@ const tweetSchema = mongoose.Schema({
             ref: "User"
         }
     ],
-    createdAt: {
-        type: Date,
-        default: new Date(Date.now())
-    }
-}, { versionKey: false });
+   
+}, {timestamps:true, versionKey: false });
 
 const Tweet = mongoose.model('Tweet', tweetSchema);
 

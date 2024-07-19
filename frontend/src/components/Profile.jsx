@@ -8,11 +8,14 @@ import { SlCalender } from "react-icons/sl";
 import formatDate from '../helpers/formateDate';
 import { useSelector } from 'react-redux';
 import EditProfile from './EditProfile';
+import Tweet from './Tweet';
 
 const Profile = () => {
     const { username } = useParams();
     const loading = useGetProfileUser(username);
     const {currUser,profileUser} = useSelector(state=>state.user)
+    const {tweets} = useSelector(state=>state.tweets)
+    const userTweets = tweets?.filter((tweet)=>tweet.author._id === profileUser?._id)
     const [showEditProfile,setShowEditProfile] = useState(false)
 
     if (loading) {
@@ -41,7 +44,7 @@ const Profile = () => {
             </div>
             <div className='bg-[#333639] h-48 relative'>
            {
-            currUser._id === profileUser._id &&      <button className='absolute bottom-2 right-3 z-10 border rounded-full px-4 py-2 hover:bg-gray-800' onClick={()=>setShowEditProfile(true)}>Edit Profile</button>
+            currUser._id === profileUser?._id &&      <button className='absolute bottom-2 right-3 z-10 border rounded-full px-4 py-2 hover:bg-gray-800' onClick={()=>setShowEditProfile(true)}>Edit Profile</button>
            }
             </div>
             <div className='-mt-16 ml-5 relative'>
@@ -75,10 +78,19 @@ const Profile = () => {
                 </div>
 
             </div>
+            
+            <div className='mt-5 border-t border-gray-600'>
+        {
+            userTweets?.map((tweet)=>{
+                return <Tweet key={tweet._id} tweet={tweet}/>
+            })
+        }
+       </div>
 
 
 
         </div>
+      
        </>
     );
 };
