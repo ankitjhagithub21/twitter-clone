@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { setTweets } from '../redux/slices/tweetSlice';
 const useGetAllTweets = () => {
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch()
+    const {tweets} = useSelector(state=>state.tweets)
 
     useEffect(() => {
         const fetchTweets = async () => {
@@ -24,7 +25,12 @@ const useGetAllTweets = () => {
             }
         };
 
+       if(!tweets){
         fetchTweets();
+        
+       }else{
+        setLoading(false)
+       }
     }, []);
 
     return { loading };

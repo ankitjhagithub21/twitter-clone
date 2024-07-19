@@ -3,10 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const tweetSlice = createSlice({
     name: "tweet",
     initialState: {
-        tweets: [],
+        tweets: null,
     },
-    reducers: {
-        setTweets: (state, action) => {
+    reducers: {setTweets: (state, action) => {
             state.tweets = action.payload;
         },
         addTweet: (state, action) => {
