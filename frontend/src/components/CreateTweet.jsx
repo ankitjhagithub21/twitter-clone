@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { CiImageOn, CiFaceSmile, CiLocationOn } from "react-icons/ci";
 import toast from "react-hot-toast"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addTweet } from '../redux/slices/tweetSlice';
 
 const CreateTweet = () => {
   const [content, setContent] = useState('')
   const [image, setImage] = useState(null)
+  const {currUser} = useSelector(state=>state.user)
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
 
@@ -49,7 +50,7 @@ const CreateTweet = () => {
 
   return (
     <div className='flex w-full items-start gap-2 p-2 border-b border-b-gray-700'>
-      <img src="https://ankitjha.vercel.app/profile.png" alt="" className='w-10 rounded-full' />
+      <img src={currUser.profileImg} alt="" className='w-10 rounded-full' />
       <div className='flex flex-col w-full'>
         <textarea placeholder='What is happening?!' value={content} className='h-20 py-2 w-full bg-transparent resize-none' onChange={(e) => setContent(e.target.value)}></textarea>
         <input type="file" id='image' name='image' onChange={handleImageChange} className='hidden' />

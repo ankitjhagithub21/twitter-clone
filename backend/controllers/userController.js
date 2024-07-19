@@ -1,3 +1,4 @@
+const { uploadImage } = require("../helpers/cloudinary");
 const User = require("../models/userModel");
 
 const getUserProfile = async (req, res) => {
@@ -105,11 +106,54 @@ const followUnfollowUser = async (req, res) => {
     }
 };
 
+const updateProfile = async(req,res) =>{
+    try{
+        const user = await User.findById(req.id)
+        if(!user){
+            return res.json({
+                success:false,
+                message:"User not found."
+            })
+        }
+
+        const {fullName,bio} = req.body;
+        if(!fullName || !bio){
+            return res.json({
+                success:false,
+                message:"All fields are required."
+            })
+        }
+        user.fullName = fullName;
+        user.bio = bio;
+        
+        let result;
+        if(req.file){
+            result = await uploadImage(req.file.path)
+            user.profileImg =result.url
+        }
+
+        await user.save()
+        const updatedUser =await User.findById(user._id).select("-password")
+        res.json({
+            success:true,
+            message:"Profile Updated.",
+            updatedUser
+        })
+
+    }catch(error){
+        res.status(500).json({
+            success:false,
+            message:"Internal server error."
+        })
+    }
+}
+
 
 
 
 module.exports = {
     getUserProfile,
     suggestedUsers,
-    followUnfollowUser
+    followUnfollowUser,
+    updateProfile
 }

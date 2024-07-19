@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { CiHome, CiSearch, CiMail, CiUser, CiCirclePlus, CiLogout } from "react-icons/ci"
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { GoPeople } from "react-icons/go";
@@ -11,6 +11,7 @@ import TwitterIcon from './TwitterIcon';
 const Left = () => {
   const { currUser } = useSelector(state => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const links = [
     {
       path: "/",
@@ -56,9 +57,11 @@ const Left = () => {
       })
       const data = await res.json()
       if (data.success) {
-
-        toast.success(data.message)
         dispatch(setCurrUser(null))
+        toast.success(data.message)
+        navigate("/")
+        
+        
       }
     } catch (error) {
       console.log(error)

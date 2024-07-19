@@ -46,7 +46,7 @@ const Profile = () => {
             </div>
             <div className='-mt-16 ml-5 relative'>
                 <div className='rounded-full w-32 h-32 bg-[#333639] border '>
-                    <img src={user.profileImg} alt="" />
+                    <img src={user.profileImg} alt="" className='w-full h-full rounded-full'/>
                 </div>
                 <div className='ml-2 flex flex-col gap-2'>
                     <h2 className='mt-2 font-bold text-xl'>{user.fullName}</h2>
