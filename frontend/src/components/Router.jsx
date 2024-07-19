@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import Home from '../pages/Home'
 import Profile from './Profile'
 import Layout from './Layout'
+import FollowingUsers from './FollowingUsers'
 
 
 const Router = () => {
@@ -19,6 +20,10 @@ const Router = () => {
                 {
                     path:"/:username",
                     element:<Profile/>
+                },
+                {
+                    path:"/:username/following",
+                    element:<FollowingUsers/>
                 }
             ]
         }

@@ -47,7 +47,7 @@ const suggestedUsers = async (req, res) => {
             users,
         });
     } catch (error) {
-       
+
         res.status(500).json({
             success: false,
             message: "Internal server error.",
@@ -106,44 +106,83 @@ const followUnfollowUser = async (req, res) => {
     }
 };
 
-const updateProfile = async(req,res) =>{
-    try{
+const updateProfile = async (req, res) => {
+    try {
         const user = await User.findById(req.id)
-        if(!user){
+        if (!user) {
             return res.json({
-                success:false,
-                message:"User not found."
+                success: false,
+                message: "User not found."
             })
         }
 
-        const {fullName,bio} = req.body;
-        if(!fullName || !bio){
+        const { fullName, bio } = req.body;
+        if (!fullName || !bio) {
             return res.json({
-                success:false,
-                message:"All fields are required."
+                success: false,
+                message: "All fields are required."
             })
         }
         user.fullName = fullName;
         user.bio = bio;
-        
+
         let result;
-        if(req.file){
+        if (req.file) {
             result = await uploadImage(req.file.path)
-            user.profileImg =result.url
+            user.profileImg = result.url
         }
 
         await user.save()
-        const updatedUser =await User.findById(user._id).select("-password")
+        const updatedUser = await User.findById(user._id).select("-password")
         res.json({
-            success:true,
-            message:"Profile Updated.",
+            success: true,
+            message: "Profile Updated.",
             updatedUser
         })
 
-    }catch(error){
+    } catch (error) {
         res.status(500).json({
-            success:false,
-            message:"Internal server error."
+            success: false,
+            message: "Internal server error."
+        })
+    }
+}
+
+
+const getUserFollowing = async (req, res) => {
+    try {
+        const {username} = req.params
+        const user = await User.findOne({username})
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found."
+            })
+        }
+
+        if (user.following.length === 0) {
+            return res.json({
+                success: true,
+                users: []
+            })
+        }
+
+        await user.populate({
+            path: 'following',
+            select: 'fullName username profileImg'
+        })
+
+        return res.json({
+            success: true,
+            users: user.following
+        })
+
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error."
         })
     }
 }
@@ -155,5 +194,6 @@ module.exports = {
     getUserProfile,
     suggestedUsers,
     followUnfollowUser,
-    updateProfile
+    updateProfile,
+    getUserFollowing,
 }

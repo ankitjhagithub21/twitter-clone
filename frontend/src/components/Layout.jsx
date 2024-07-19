@@ -8,7 +8,7 @@ const Layout = () => {
 
             <Left />
             <div className='lg:w-[50%] w-full lg:border-r overflow-y-auto border-gray-700 '>
-            <Outlet />
+                <Outlet />
             </div>
             <Right />
 

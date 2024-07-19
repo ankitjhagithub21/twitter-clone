@@ -6,9 +6,11 @@ import useGetAllTweets from '../hooks/useGetAllTweets';
 import Loader from '../components/Loader';
 import { useSelector } from 'react-redux';
 
+
 const Home = () => {
     const { loading } = useGetAllTweets();
     const {tweets} = useSelector(state=>state.tweets)
+   
     return (
         <>
             <CenterNav />

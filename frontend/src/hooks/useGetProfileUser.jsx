@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrUser, setProfileUser } from '../redux/slices/userSlice';
 
 const useGetProfileUser = (username) => {
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(null);
+    const dispatch = useDispatch()
     const {currUser} = useSelector((state) => state.user); 
 
     useEffect(() => {
@@ -13,7 +14,7 @@ const useGetProfileUser = (username) => {
                 const data = await res.json();
 
                 if (data.success) {
-                    setUser(data.user);
+                    dispatch(setProfileUser(data.user));
                 }
 
             } catch (error) {
@@ -25,7 +26,7 @@ const useGetProfileUser = (username) => {
 
         if (username) {
             if (currUser?.username === username) {
-                setUser(currUser);
+                dispatch(setProfileUser(currUser));
                 setLoading(false);
             } else {
                 getUserFromServer();
@@ -33,7 +34,7 @@ const useGetProfileUser = (username) => {
         }
     }, [username, currUser]);
 
-    return { user, loading };
+    return loading;
 };
 
 export default useGetProfileUser;

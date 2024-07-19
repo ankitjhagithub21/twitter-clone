@@ -11,8 +11,8 @@ import EditProfile from './EditProfile';
 
 const Profile = () => {
     const { username } = useParams();
-    const { user, loading } = useGetProfileUser(username);
-    const {currUser} = useSelector(state=>state.user)
+    const loading = useGetProfileUser(username);
+    const {currUser,profileUser} = useSelector(state=>state.user)
     const [showEditProfile,setShowEditProfile] = useState(false)
 
     if (loading) {
@@ -21,7 +21,7 @@ const Profile = () => {
         </div>;
     }
 
-    if (!user) {
+    if (!profileUser) {
         return <UserNotFound />
     }
 
@@ -41,33 +41,33 @@ const Profile = () => {
             </div>
             <div className='bg-[#333639] h-48 relative'>
            {
-            currUser._id === user._id &&      <button className='absolute bottom-2 right-3 z-10 border rounded-full px-4 py-2 hover:bg-gray-800' onClick={()=>setShowEditProfile(true)}>Edit Profile</button>
+            currUser._id === profileUser._id &&      <button className='absolute bottom-2 right-3 z-10 border rounded-full px-4 py-2 hover:bg-gray-800' onClick={()=>setShowEditProfile(true)}>Edit Profile</button>
            }
             </div>
             <div className='-mt-16 ml-5 relative'>
                 <div className='rounded-full w-32 h-32 bg-[#333639] border '>
-                    <img src={user.profileImg} alt="" className='w-full h-full rounded-full'/>
+                    <img src={profileUser.profileImg} alt="profile_img" className='w-full h-full rounded-full'/>
                 </div>
                 <div className='ml-2 flex flex-col gap-2'>
-                    <h2 className='mt-2 font-bold text-xl'>{user.fullName}</h2>
-                    <p className='text-gray-400'>@{user.username}</p>
+                    <h2 className='mt-2 font-bold text-xl'>{profileUser.fullName}</h2>
+                    <p className='text-gray-400'>@{profileUser.username}</p>
                     {
-                        user.bio && <p>{user.bio}</p>
+                        profileUser.bio && <p>{profileUser.bio}</p>
                     }
 
 
                     <div className='flex items-center gap-1 text-gray-400 text-sm'>
                         <SlCalender />
                         <span>Joined</span>
-                        {formatDate(user.joined)}
+                        {formatDate(profileUser.joined)}
                     </div>
                     <div className='text-gray-400 text-sm flex items-center gap-1'>
-                        <div className="flex items-center gap-1">
-                            <span>{user.following.length}</span>
+                        <Link className="flex items-center gap-1 hover:underline" to={`/${profileUser.username}/following`}>
+                            <span>{profileUser.following.length}</span>
                             Following
-                        </div>
+                        </Link>
                         <div className='flex items-center gap-1'>
-                            <span>{user.followers.length}</span>
+                            <span>{profileUser.followers.length}</span>
                             Followers
                         </div>
                     </div>

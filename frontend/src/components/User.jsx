@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast"
+import { useSelector } from 'react-redux';
 
 const User = ({user}) => {
     const { _id, fullName, username, profileImg } = user;  
+    const {currUser,profileUser} = useSelector(state=>state.user)
     const navigate = useNavigate();
     const [isFollowing, setIsFollowing] = useState(false);  
 
@@ -44,12 +46,14 @@ const User = ({user}) => {
                     <span className='text-gray-400'>@{username}</span>
                 </div>
             </div>
-            <button 
-                className={`px-4 py-1 rounded-full text-sm font-semibold ${isFollowing ? 'border hover:bg-white hover:text-black  text-white ' : 'bg-white text-gray-800 hover:bg-gray-200'}`} 
-                onClick={handleFollowUnfollow}
-            >
-                {isFollowing ? 'Unfollow' : 'Follow'}
-            </button>
+          {
+            currUser._id !== _id &&   <button 
+            className={`px-4 py-1 rounded-full text-sm font-semibold ${isFollowing ? 'border hover:bg-white hover:text-black  text-white ' : 'bg-white text-gray-800 hover:bg-gray-200'}`} 
+            onClick={handleFollowUnfollow}
+        >
+            {isFollowing ? 'Unfollow' : 'Follow'}
+        </button>
+          }
         </div>
     );
 };
