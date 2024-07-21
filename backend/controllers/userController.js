@@ -187,6 +187,44 @@ const getUserFollowing = async (req, res) => {
     }
 }
 
+const getUserFollowers = async (req, res) => {
+    try {
+        const {username} = req.params
+        const user = await User.findOne({username})
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found."
+            })
+        }
+
+        if (user.followers.length === 0) {
+            return res.json({
+                success: true,
+                users: []
+            })
+        }
+
+        await user.populate({
+            path: 'followers',
+            select: 'fullName username profileImg'
+        })
+
+        return res.json({
+            success: true,
+            users: user.followers
+        })
+
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({
+            success: false,
+            message: "Internal Server Error."
+        })
+    }
+}
+
 
 
 
@@ -196,4 +234,5 @@ module.exports = {
     followUnfollowUser,
     updateProfile,
     getUserFollowing,
+    getUserFollowers
 }

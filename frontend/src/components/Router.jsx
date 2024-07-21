@@ -4,6 +4,7 @@ import Home from '../pages/Home'
 import Profile from './Profile'
 import Layout from './Layout'
 import FollowingUsers from './FollowingUsers'
+import Followers from './Followers'
 
 
 const Router = () => {
@@ -24,6 +25,10 @@ const Router = () => {
                 {
                     path:"/:username/following",
                     element:<FollowingUsers/>
+                },
+                {
+                    path:"/:username/followers",
+                    element:<Followers/>
                 }
             ]
         }
